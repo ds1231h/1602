@@ -1,5 +1,5 @@
 Dependencies for Project '1602', Target 'Target 1': (DO NOT MODIFY !)
-F (.\user\main.c)(0x579B8B04)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\core -I .\hardware\inc -I .\stlib\inc -I .\user-I E:\stm32\1602\RTE-I C:\Keil\ARM\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include-I C:\Keil\ARM\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DSTM32F10X_CL-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\user\main.c)(0x579BAD45)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\core -I .\hardware\inc -I .\stlib\inc -I .\user-I E:\stm32\1602\RTE-I C:\Keil\ARM\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include-I C:\Keil\ARM\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DSTM32F10X_CL-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\hardware\inc\sys.h)(0x5055B57C)
 I (.\user\stm32f10x.h)(0x4D783CB4)
 I (.\core\core_cm3.h)(0x4D523B58)
