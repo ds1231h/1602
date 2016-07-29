@@ -32,7 +32,7 @@ void readIo(void)
 			{
 				temp*=2;
 			}
-			k+=temp;
+			k+=temp; // 最终结果放在k中，对k进行运算
 		}
 		else
 		{
