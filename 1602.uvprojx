@@ -430,6 +430,11 @@
               <FileType>1</FileType>
               <FilePath>.\hardware\src\usart.c</FilePath>
             </File>
+            <File>
+              <FileName>ioRead.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\hardware\src\ioRead.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
