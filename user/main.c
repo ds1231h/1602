@@ -6,25 +6,25 @@
 #include"stdbool.h"
 
 u8 table2[]="52.3%";
-char resu[10];
-char resu2[10];
-char* p_resu = &resu[10];
-char* p2_resu = &resu[0];
-char* p_resu2 = &resu2[10];
-char* p2_resu2 = &resu2[0];
+u8 resu[10];
+u8 resu2[10];
+u8* p_resu = &resu[10];
+u8* p2_resu = &resu[0];
+u8* p_resu2 = &resu2[10];
+u8* p2_resu2 = &resu2[0];
 
 u16 acce_data(u8 tm)
 {
 	u8 i;
 	u8 j;
 	u16 k; // 16 bit
-	uint16_t temp;
+	uint16_t temp= 1;
 	
 	for(i=8; i>0; i--)
 	{
 		
 		temp = 1;
-		for(j=tm*8+8-i;j>0;j--)
+		for(j=tm;j>0;j--)
 		{
 			temp*=2;
 		}
@@ -33,7 +33,7 @@ u16 acce_data(u8 tm)
 		{
 			// rdIn[i-1] = '1';
 			temp = 1;
-			for(j=tm*8+8-i;j>0;j--)
+			for(j=tm;j>0;j--)
 			{
 				temp*=2;
 			}
@@ -50,12 +50,10 @@ u16 acce_data(u8 tm)
 	
 void readIo(void)
 {
-	u8 sel_num;
-	u8 sel_num1;
-	u8 sel_num2;
+	u8 sel_num=8;
 	u16 res1=0;
 	u16 res2=0;
-	u8 temp;
+	u16 temp;
 	bool b0=true;
 	bool b1=true;
 	bool b2=true;
@@ -140,8 +138,8 @@ void readIo(void)
 				if(b6)
 				{
 					res2+=acce_data(sel_num);
-				// 传完八个数
-				b6=false;
+					// 传完八个数
+					b6=false;
 				}
 				break;
 				
@@ -149,8 +147,8 @@ void readIo(void)
 				if(b7)
 				{
 					res2+=acce_data(sel_num);
-				// 传完八个数
-				b7=false;
+					// 传完八个数
+					b7=false;
 				}
 				break;
 				
@@ -167,6 +165,7 @@ void readIo(void)
 		p_resu--;
 	}
 	p_resu++;        //对字符串添加'\0'
+	
 	for(*p2_resu=resu[0];p2_resu !=&resu[10];)   //将字符串右对齐变成左对齐
   {
     *p2_resu = *p_resu;
@@ -178,10 +177,11 @@ void readIo(void)
 	// 显示结果2
 	for(temp=res2; temp>0; temp/=10)
 	{
-		*p_resu = temp%10+'0';
-		p_resu--;
+		*p2_resu = temp%10+'0';
+		p2_resu--;
 	}
-	p_resu++;        //对字符串添加'\0'
+	p2_resu++;        //对字符串添加'\0'
+	
 	for(*p2_resu=resu2[0];p2_resu !=&resu2[10];)   //将字符串右对齐变成左对齐
   {
     *p2_resu = *p_resu;
@@ -279,10 +279,11 @@ int main(void)
 {
 	u8 a;
 	delay_init();
+	uart_init(9600);
 	GPIO_1602_Init();
 	LCD_1602_Init();
 	
-	RCC_Configuration();				   //调用系统时钟函数
+	// RCC_Configuration();				   //调用系统时钟函数
 	// NIVC_Configuration();
 	// EXTI_Configuration();
 	
@@ -290,7 +291,8 @@ int main(void)
 	delay_ms(200);
 	
 	readIo();
-	
+	resu[0]='a';
+	resu2[0]='a';
 	for(a=0;a<(sizeof(resu)/sizeof(resu[0]));a++)
 	{
 		Write_Date(resu[a]);
