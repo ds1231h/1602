@@ -411,29 +411,19 @@
           <GroupName>hardware</GroupName>
           <Files>
             <File>
-              <FileName>1602.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\hardware\src\1602.c</FilePath>
-            </File>
-            <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\hardware\src\delay.c</FilePath>
             </File>
             <File>
-              <FileName>sys.c</FileName>
+              <FileName>led.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\hardware\src\sys.c</FilePath>
+              <FilePath>.\hardware\src\led.c</FilePath>
             </File>
             <File>
-              <FileName>usart.c</FileName>
+              <FileName>1602.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\hardware\src\usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>ioRead.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\hardware\src\ioRead.c</FilePath>
+              <FilePath>.\hardware\src\1602.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -451,14 +441,19 @@
               <FilePath>.\stlib\src\stm32f10x_rcc.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f10x_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\stlib\src\stm32f10x_usart.c</FilePath>
-            </File>
-            <File>
               <FileName>misc.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\stlib\src\misc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\stlib\src\stm32f10x_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\stlib\src\stm32f10x_rtc.c</FilePath>
             </File>
           </Files>
         </Group>

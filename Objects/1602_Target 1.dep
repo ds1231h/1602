@@ -1,5 +1,5 @@
 Dependencies for Project '1602', Target 'Target 1': (DO NOT MODIFY !)
-F (.\user\main.c)(0x579BBE2C)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\core -I .\hardware\inc -I .\stlib\inc -I .\user-I E:\stm32\1602\RTE-I C:\Keil\ARM\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include-I C:\Keil\ARM\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DSTM32F10X_CL-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\user\main.c)(0x579C7E35)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\core -I .\hardware\inc -I .\stlib\inc -I .\user-I E:\stm32\1602\RTE-I C:\Keil\ARM\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include-I C:\Keil\ARM\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DSTM32F10X_CL-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\hardware\inc\sys.h)(0x5055B57C)
 I (.\user\stm32f10x.h)(0x4D783CB4)
 I (.\core\core_cm3.h)(0x4D523B58)
@@ -34,6 +34,7 @@ I (.\hardware\inc\usart.h)(0x50517A82)
 I (C:\Keil\ARM\ARM\ARMCC\include\stdio.h)(0x569DEA3A)
 I (.\hardware\inc\1602.h)(0x520106A0)
 I (.\hardware\inc\ioRead.h)(0x579BB733)
+I (C:\Keil\ARM\ARM\ARMCC\include\stdbool.h)(0x579C4FEA)
 F (.\user\stm32f10x_it.c)(0x4D99A59E)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\core -I .\hardware\inc -I .\stlib\inc -I .\user-I E:\stm32\1602\RTE-I C:\Keil\ARM\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include-I C:\Keil\ARM\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DSTM32F10X_CL-o .\objects\stm32f10x_it.o --omf_browse .\objects\stm32f10x_it.crf --depend .\objects\stm32f10x_it.d)
 I (user\stm32f10x_it.h)(0x4D99A59E)
 I (user\stm32f10x.h)(0x4D783CB4)
@@ -159,7 +160,7 @@ I (.\stlib\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (.\stlib\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (.\stlib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\stlib\inc\misc.h)(0x4D783BB4)
-F (.\hardware\src\1602.c)(0x579B7402)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\core -I .\hardware\inc -I .\stlib\inc -I .\user-I E:\stm32\1602\RTE-I C:\Keil\ARM\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include-I C:\Keil\ARM\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DSTM32F10X_CL-o .\objects\1602.o --omf_browse .\objects\1602.crf --depend .\objects\1602.d)
+F (.\hardware\src\1602.c)(0x579C71FF)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\core -I .\hardware\inc -I .\stlib\inc -I .\user-I E:\stm32\1602\RTE-I C:\Keil\ARM\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include-I C:\Keil\ARM\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DSTM32F10X_CL-o .\objects\1602.o --omf_browse .\objects\1602.crf --depend .\objects\1602.d)
 I (.\user\stm32f10x.h)(0x4D783CB4)
 I (.\core\core_cm3.h)(0x4D523B58)
 I (C:\Keil\ARM\ARM\ARMCC\include\stdint.h)(0x569DEA3A)

@@ -34,3 +34,4 @@
 .\objects\main.o: C:\Keil\ARM\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: .\hardware\inc\1602.h
 .\objects\main.o: .\hardware\inc\ioRead.h
+.\objects\main.o: C:\Keil\ARM\ARM\ARMCC\Bin\..\include\stdbool.h

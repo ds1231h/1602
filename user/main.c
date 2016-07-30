@@ -3,32 +3,37 @@
 #include"usart.h"
 #include"1602.h"
 #include"ioRead.h"
+#include"stdbool.h"
 
-u8 table1[]="15Hz";
 u8 table2[]="52.3%";
-u8 temp;
-// u8 rdIn[8];
 char resu[10];
 char resu2[10];
 char* p_resu = &resu[10];
 char* p2_resu = &resu[0];
 char* p_resu2 = &resu2[10];
 char* p2_resu2 = &resu2[0];
-unsigned long k; // 32 bit
-	
-void readIo(void)
+
+u16 acce_data(u8 tm)
 {
 	u8 i;
 	u8 j;
-	k = 0;
-		//k=GPIOD->IDR;
+	u16 k; // 16 bit
+	uint16_t temp;
+	
 	for(i=8; i>0; i--)
 	{
-		if(GPIO_ReadInputDataBit(GPIOD, i))
+		
+		temp = 1;
+		for(j=tm*8+8-i;j>0;j--)
 		{
-			// rdIn[i] = '1';
+			temp*=2;
+		}
+			
+		if(GPIO_ReadInputDataBit(GPIOD, temp))
+		{
+			// rdIn[i-1] = '1';
 			temp = 1;
-			for(j=8-i;j>0;j--)
+			for(j=tm*8+8-i;j>0;j--)
 			{
 				temp*=2;
 			}
@@ -40,9 +45,123 @@ void readIo(void)
 			temp = 0;
 		}
 	}
-	// rdIn[i+1] = '\0';
+	return k;
+}
 	
-	for(temp=k; temp>0; temp/=10)
+void readIo(void)
+{
+	u8 sel_num;
+	u8 sel_num1;
+	u8 sel_num2;
+	u16 res1=0;
+	u16 res2=0;
+	u8 temp;
+	bool b0=true;
+	bool b1=true;
+	bool b2=true;
+	bool b3=true;
+	bool b4=true;
+	bool b5=true;
+	bool b6=true;
+	bool b7=true;
+	
+	while(b0 || b1 || b2 || b3)
+	{
+		sel_num=GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_0) + (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_1)*2); // 频率输入4次，4-7
+		
+		switch(sel_num)
+		{
+			case 0:
+				if(b0)
+				{
+					res1+=acce_data(sel_num);
+					// 传完八个数
+					b0=false;
+				}
+				break;
+			
+			case 1:
+				if(b1)
+				{
+					res1+=acce_data(sel_num);
+					// 传完八个数
+					b1=false;
+				}
+				break;
+			
+			case 2:
+				if(b2)
+				{
+					res1+=acce_data(sel_num);
+					// 传完八个数
+					b2=false;
+				}
+				break;
+			
+			case 3:
+				if(b3)
+				{
+					res1+=acce_data(sel_num);
+					// 传完八个数
+					b3=false;
+				}
+				break;
+			
+			default:
+				break;
+		}	
+	}
+	GPIO_ResetBits(GPIOB,GPIO_Pin_8);
+	
+	while(b4 || b5 || b6 || b7)
+	{
+		sel_num=GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_0) + (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_1)*2) + (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_2)*4); // 频率输入4次，4-7
+		
+		switch(sel_num)
+		{
+			case 4:
+				if(b4)
+				{
+					res2+=acce_data(sel_num);
+					// 传完八个数
+					b4=false;
+				}
+				break;
+			case 5:
+				if(b5)
+				{
+					res2+=acce_data(sel_num);
+					// 传完八个数
+					b5=false;
+				}
+				break;
+				
+			case 6:
+				if(b6)
+				{
+					res2+=acce_data(sel_num);
+				// 传完八个数
+				b6=false;
+				}
+				break;
+				
+			case 7:
+				if(b7)
+				{
+					res2+=acce_data(sel_num);
+				// 传完八个数
+				b7=false;
+				}
+				break;
+				
+			default:
+				break;
+		}
+	}
+	GPIO_ResetBits(GPIOB,GPIO_Pin_9);
+
+	// 显示结果1
+	for(temp=res1; temp>0; temp/=10)
 	{
 		*p_resu = temp%10+'0';
 		p_resu--;
@@ -55,6 +174,22 @@ void readIo(void)
     p_resu++;
   }
 	*p2_resu = '\0';
+	
+	// 显示结果2
+	for(temp=res2; temp>0; temp/=10)
+	{
+		*p_resu = temp%10+'0';
+		p_resu--;
+	}
+	p_resu++;        //对字符串添加'\0'
+	for(*p2_resu=resu2[0];p2_resu !=&resu2[10];)   //将字符串右对齐变成左对齐
+  {
+    *p2_resu = *p_resu;
+    p2_resu++;
+    p_resu++;
+  }
+	*p2_resu = '\0';
+	
 }
 
 //配置系统时钟************************************************************
@@ -68,6 +203,7 @@ void RCC_Configuration(void)
 	
 }
 
+/*
 //外部中断函数*************************************************************************************
 void EXTI_Configuration(void)
 {
@@ -137,7 +273,7 @@ void EXTI2_IRQHandler(void)
 		EXTI_ClearFlag(EXTI_Line2);			 
 		EXTI_ClearITPendingBit(EXTI_Line2);	 //清除外部中断线2的挂起位
 	}
-}
+}*/
 
 int main(void)
 {
@@ -147,8 +283,8 @@ int main(void)
 	LCD_1602_Init();
 	
 	RCC_Configuration();				   //调用系统时钟函数
-	NIVC_Configuration();
-	EXTI_Configuration();
+	// NIVC_Configuration();
+	// EXTI_Configuration();
 	
 	Write_Com(0x80+17);
 	delay_ms(200);
@@ -162,9 +298,9 @@ int main(void)
 	}
 	Write_Com(0xc0+17);
 	delay_ms(200);
-	for(a=0;a<(sizeof(table2)/sizeof(table2[0]));a++)
+	for(a=0;a<(sizeof(resu2)/sizeof(resu2[0]));a++)
 	{
-		Write_Date(table2[a]);
+		Write_Date(resu2[a]);
 		delay_ms(200);
 	}
 	for(a=0;a<16;a++)
